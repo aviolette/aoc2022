@@ -15,24 +15,17 @@ def stripsort(file_name, func):
     return lines
 
 
-def group_lines(file_name):
+def group_lines(file_name, transform=lambda a: a):
     group = []
     for line in striplines(file_name):
         if len(line):
-            group.append(line)
+            group.append(transform(line))
         else:
             yield group
             group = []
     if group:
         yield group
 
+
 def group_lines_int(file_name):
-    group = []
-    for line in striplines(file_name):
-        if len(line):
-            group.append(int(line))
-        else:
-            yield group
-            group = []
-    if group:
-        yield group
+    return group_lines(file_name, lambda a: int(a))
