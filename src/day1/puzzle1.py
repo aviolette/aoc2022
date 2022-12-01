@@ -1,4 +1,4 @@
-from src.elves import intlines, striplines
+from src.elves import group_lines_int
 
 
 def which_elf(file: str):
@@ -7,15 +7,10 @@ def which_elf(file: str):
 
 def top_combined_scores(file: str, num_elves: int):
     max_elves = []
-    current_score = 0
-    for line in striplines(file):
-        if not line:
-            max_elves.append(current_score)
-            max_elves.sort()
-            max_elves = max_elves[-num_elves:]
-            current_score = 0
-        else:
-            current_score += int(line)
+    for items in group_lines_int(file):
+        max_elves.append(sum(items))
+        max_elves.sort()
+        max_elves = max_elves[-num_elves:]
 
     print(sum(max_elves))
 

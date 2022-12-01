@@ -25,3 +25,14 @@ def group_lines(file_name):
             group = []
     if group:
         yield group
+
+def group_lines_int(file_name):
+    group = []
+    for line in striplines(file_name):
+        if len(line):
+            group.append(int(line))
+        else:
+            yield group
+            group = []
+    if group:
+        yield group
