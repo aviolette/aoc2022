@@ -1,8 +1,5 @@
 from src.elves import groups_of, strip_lines
 
-values = {}
-
-
 def weight(item):
     if item.islower():
         return ord(item) - 96
