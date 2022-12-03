@@ -24,7 +24,6 @@ def puzzle1(file_name):
 def puzzle2(file_name):
     priority = 0
     for lines in groups_of(file_name, 3):
-        print(lines)
         i1 = {a for a in lines[0]}.intersection({b for b in lines[1]})
         i2 = {c for c in lines[2]}.intersection(i1)
         priority += sum([weight(item) for item in i2])
