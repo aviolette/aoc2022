@@ -27,5 +27,17 @@ def group_lines(file_name, transform=lambda a: a):
         yield group
 
 
+def groups_of(file_name, num, transform=lambda a: a):
+    group = []
+    for i, line in enumerate(strip_lines(file_name)):
+        if i != 0 and i % num == 0:
+            yield group
+            group = []
+        group.append(transform(line))
+
+    if group:
+        yield group
+
+
 def group_lines_int(file_name):
     return group_lines(file_name, lambda a: int(a))
